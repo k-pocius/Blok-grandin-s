@@ -11,8 +11,12 @@ int main(){
     }
     cout << endl;
     sum(A);
+    K(A);
+    R(A);
+    I(A);
     for (int x : A){
         cout << x << " ";
     }
+    cout << A.size() << endl;
 }
 
