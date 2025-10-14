@@ -1,31 +1,18 @@
 #include "lib.h"
+#include "main.h"
 
-// konstanta: KRISTIS5
-void sum(int A[]);
 
 int main(){
     const string s = "KRISTIS5";
-    int A[s.length()];
-    for (int i = 0; i < s.length(); i++){
-        A[i] = int(s[i]);
-        cout << int(A[i]) << " ";
+    vector<int> A;
+    for (char c : s){
+        A.push_back(c);
+        cout << int(c) << " ";
     }
     cout << endl;
     sum(A);
-    for (int i = 0; i < s.length(); i++){
-        cout << int(A[i]) << " ";
+    for (int x : A){
+        cout << x << " ";
     }
 }
 
-void sum(int A[]){
-    int sum;
-    string a = "  ";
-    int j = 0;
-    for(int i = 0; i < a.length(); i++){
-        int x = 0;
-        while(x != 3){
-            A[(i + x) % 8] += int(a[i]);
-            x++;
-        }
-    }
-}
