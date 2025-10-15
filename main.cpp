@@ -4,60 +4,39 @@
 
 int main(){
     vector<uint32_t> A;
-    ASCII(A);
-    // for(int x : A){
-    //     cout << x << " ";
-    // }
-    // cout << endl;
-    sum(A); 
-    // for(int x : A){
-    //     cout << x << " ";
-    // }
-    cout << endl;   
-    vector<string> B(A.size());
+    vector<string> B;
+    vector<string> TXT;
+
+    string line;
+    ifstream file("1000simb.txt");
+    while (getline(file, line)) {
+        TXT.push_back(line);
+    }
+    file.close();
+
 
     
-    K(A);
-    // for(int x : A){
-    //     cout << x << " ";
-    // }
-    // cout << endl;
-    R(A);
-    // for(int x : A){
-    //     cout << x << " ";
-    // }
-    // cout << endl;
-    I(A);
-    // for(int x : A){
-    //     cout << x << " ";
-    // }
-    // cout << endl;
-    // cout << endl;
-    S(A,B,8);
-    // for(int x : A){
-    //     cout << x << " ";
-    // }
-    // cout << endl;
-    // for (string x : B){
-    //     cout << x;
-    // }
-    // cout << endl;
-    // cout << endl;
-    T(A,B,8);
-    //     for(int x : A){
-    //     cout << x << " ";
-    // }
-    // cout << endl;
-    // for (string x : B){
-    //     cout << x;
-    // }
+    ofstream outFile("output.txt");
+    for(string i : TXT){
+        A.clear();
+        B.clear();
+        ASCII(A);
+        sum(A, i); 
 
-    I(A);
-    S(A,B,8);
-    cout << endl;
-    for (string x : B){
-        cout << x;
+        K(A);
+        R(A);
+        I(A);
+        S(A,B,8);
+        T(A,B,8);
+        I(A);
+        S(A,B,8);
+
+        for (string x : B) {
+            outFile << x;
+        }
+        outFile << endl; 
     }
+    outFile.close();
 
     return 0;
 }
