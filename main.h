@@ -1,7 +1,7 @@
 #include "lib.h"
 
 void sum(vector<int> & A){
-    string a = "Labas";
+    string a = "";
     int j = 0;
     for(int i = 0; i < a.length(); i++){
         for(int x = 0; x < 3; x++){
@@ -33,6 +33,27 @@ void I(vector<int> & A){ // I-invert bits XOR
     }
 }
 
-void S(vector<int> & A){ // S-shape hex format
-
+void S(vector<int> & A, vector<string> & B, int length){ // S-shape hex format
+    int number;
+    char a;
+    for(int i = 0; i < A.size(); i++){
+        number = A[i];
+        for(int j = 0; j < length; j++){
+            if (number % 16 < 10)
+                a = '0' + (number % 16);
+            else {
+                switch(number % 16) {
+                    case 10: a = 'A'; break;
+                    case 11: a = 'B'; break;
+                    case 12: a = 'C'; break;
+                    case 13: a = 'D'; break;
+                    case 14: a = 'E'; break;
+                    case 15: a = 'F'; break;
+                }
+            }
+            B[i] += a;
+            number = number / 16;
+        }
+        reverse(B[i].begin(), B[i].end());
+    }
 }

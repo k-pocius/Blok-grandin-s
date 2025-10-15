@@ -9,14 +9,17 @@ int main(){
         A.push_back(c);
         cout << int(c) << " ";
     }
+    vector<string> B(A.size());
     cout << endl;
     sum(A);
     K(A);
     R(A);
     I(A);
-    for (int x : A){
-        cout << x << " ";
+    S(A, B, 8);
+    for (string x : B){
+        cout << x;
     }
-    cout << A.size() << endl;
+
+    return 0;
 }
 
