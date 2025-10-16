@@ -1,6 +1,4 @@
-# Bloku grandines
-
-HASH GENERATORIUS
+#HASH GENERATORIUS
 
 Idėja: Naudoju savo vardo trumpinį KRISTIS + simbolį 5, kad iš viso būtų 8 simboliai = 8 baitai (64 bitai). Toliau programos eigoje, prie savo vardo pridedu nuskaityto failo string'u ASCII vertes ir vykdau funkcijas iš savo vardo raidžių kurios atspindi ką funkcijos daro. PVZ:
 
