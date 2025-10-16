@@ -2,13 +2,13 @@
 
 Idėja: Naudoju savo vardo trumpinį KRISTIS + simbolį 5, kad iš viso būtų 8 simboliai = 8 baitai (64 bitai). Toliau programos eigoje, prie savo vardo pridedu nuskaityto failo string'u ASCII vertes ir vykdau funkcijas iš savo vardo raidžių kurios atspindi ką funkcijos daro. PVZ:
 
-K - Key weighting (multiplication by index)
-R - Rotate bits (bitwise rotation)
-I - Iterative mixing (XOR + addition)
-S - Stringify (convert to HEX string)
-T - Transform (text merge and key re-application)
-I - Iterative mixing (XOR + addition)
-S - Stringify (convert to HEX string)
+K - Key weighting (multiplication by index) <br>
+R - Rotate bits (bitwise rotation) <br>
+I - Iterative mixing (XOR + addition) <br>
+S - Stringify (convert to HEX string) <br>
+T - Transform (text merge and key re-application) <br>
+I - Iterative mixing (XOR + addition) <br>
+S - Stringify (convert to HEX string) <br>
 
 Veikimo principas, pseudo kodas:
 
