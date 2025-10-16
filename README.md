@@ -42,7 +42,7 @@ A = groupEach8NibblesInto32bit(Tnums)
 
 
 
-![Diagrama](diagram.png)
+![Diagrama](diagrama.png)
 
 
 
