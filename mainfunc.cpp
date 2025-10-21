@@ -2,6 +2,19 @@
 #include "main.h"
 #include <sstream>
 
+class User{
+private:
+    string name;
+    string publicKey;
+    uint64_t balance;
+
+public:
+    User(string n, string pk, uint64_t bal) : name(n), publicKey(pk), balance(bal) {}
+
+
+};
+vector <User> users;
+
 
 const string s = "KRISTIS5";
 using hrClock = std::chrono::high_resolution_clock;
@@ -9,56 +22,48 @@ std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch()
 std::uniform_int_distribution<int> dist(1, 10);
 
 
-string random_string(size_t length) {
+void userGen(){
     const string symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*-_=+?/,.;:";
-    string result;
-    for (size_t i = 0; i < length; ++i) {
-        result += symbols[dist(mt) % symbols.size()];
-    }
-    return result;
-}
-
-
-void generuojam(){
-    vector<int> lengths = {10, 100, 500, 1000};
-    const int pairs_per_file = 100000;
-
-    for (int length : lengths) {
-        string filename = to_string(length) + "sugeneruota" + ".txt";
-        ofstream file(filename);
-
-        for (int i = 0; i < pairs_per_file; ++i) {
-            string s1 = random_string(length);
-            string s2 = random_string(length);
-            file << s1 << " " << s2 << "\n";
+    vector <string> Names = {"Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hannah", "Ian", "Jack",
+                    "Kara", "Liam", "Mia", "Noah", "Olivia", "Paul", "Quinn", "Rachel", "Sam", "Tina",
+                    "Uma", "Victor", "Wendy", "Xavier", "Yara", "Zach", "Leo", "Nora", "Max", "Jade"};
+    ofstream file("user.txt");
+    for (size_t i = 0; i < 1000; ++i) {
+        string key;
+        for(int j = 0; j < 10; j++){
+            key += symbols[dist(mt) % symbols.size()];
         }
-
-        file.close();
+        string name = Names[dist(mt) % Names.size()];
+        uint64_t balance = 100 + dist(mt) * 1000000;
+        users.push_back(User(name, key, balance));
+        file << name << " " << key << " " << balance << "\n";
     }
-}
-
-void generuojamsimb(){
-    const int pairs_per_file = 100000;
-        string filename = "2string.txt";
-        ofstream file(filename);
-
-        for (int i = 0; i < pairs_per_file; ++i) {
-            string a = random_string(1);
-            string b = random_string(1);
-            while(b == a){
-                b = random_string(1);
-            }
-            string s1 = "la" + a + "as";
-            string s2 = "la" + b + "as";
-            file << s1 << " " << s2 << "\n";
-        }
     file.close();
 }
+
+// void generuojamsimb(){
+//     const int pairs_per_file = 100000;
+//         string filename = "2string.txt";
+//         ofstream file(filename);
+
+//         for (int i = 0; i < pairs_per_file; ++i) {
+//             string a = random_string(1);
+//             string b = random_string(1);
+//             while(b == a){
+//                 b = random_string(1);
+//             }
+//             string s1 = "la" + a + "as";
+//             string s2 = "la" + b + "as";
+//             file << s1 << " " << s2 << "\n";
+//         }
+//     file.close();
+// }
 
 
 void ASCII(vector<uint32_t> & A){
     for (char c : s){
         A.push_back(int(c));
+        
     }
 }
 
@@ -102,11 +107,11 @@ void S(vector<uint32_t> &A, vector<string> &B, int length) {
         char a;
 
         for (int j = 0; j < length; j++) {
-            int val = number % 16;  // use unsigned math to avoid negatives
+            int val = number % 16; 
             if (val < 10)
                 a = '0' + val;
             else {
-                switch (val) {  // ✅ restored your original style
+                switch (val) { 
                     case 10: a = 'A'; break;
                     case 11: a = 'B'; break;
                     case 12: a = 'C'; break;

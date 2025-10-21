@@ -1,7 +1,6 @@
 #include "lib.h"
 
-string random_string(size_t length);
-void generuojam();
+void userGen();
 void generuojamsimb();
 void ASCII(vector<uint32_t> & A);
 void sum(vector<uint32_t> & A, string a);
