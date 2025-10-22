@@ -6,20 +6,70 @@ class User{
 private:
     string name;
     string publicKey;
-    uint64_t balance;
+    uint32_t balance;
 
 public:
     User(string n, string pk, uint64_t bal) : name(n), publicKey(pk), balance(bal) {}
+
+    string getName() const {
+        return name;
+    }
+
+    string getPublicKey() const {
+        return publicKey;
+    }
+
+    uint32_t getBalance() const {
+        return balance;
+    }
 
 
 };
 vector <User> users;
 
 
+class Transaction{
+private:
+    string transactionID;
+    string sender;
+    string receiver;
+    uint32_t amount;
+
+public:
+    Transaction(string id, string s, string r, uint64_t amt) : transactionID(id), sender(s), receiver(r), amount(amt) {}
+
+    string getTransactionID() const {
+        return transactionID;
+    }
+
+    string getSender() const {
+        return sender;
+    }
+
+    string getReceiver() const {
+        return receiver;
+    }
+
+    uint32_t getAmount() const {
+        return amount;
+    }
+
+
+};
+vector <Transaction> transactions;
+
+
+
 const string s = "KRISTIS5";
 using hrClock = std::chrono::high_resolution_clock;
 std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
-std::uniform_int_distribution<int> dist(1, 10);
+std::uniform_int_distribution<int> dist(1, 1000000);
+std::uniform_int_distribution<int> dist_1000(0, 999);
+
+
+extern std::vector<uint32_t> A;
+extern std::vector<std::string> B;
+extern std::vector<std::string> TXT;
 
 
 void userGen(){
@@ -34,30 +84,42 @@ void userGen(){
             key += symbols[dist(mt) % symbols.size()];
         }
         string name = Names[dist(mt) % Names.size()];
-        uint64_t balance = 100 + dist(mt) * 1000000;
+        uint64_t balance = dist(mt);
         users.push_back(User(name, key, balance));
         file << name << " " << key << " " << balance << "\n";
     }
     file.close();
 }
 
-// void generuojamsimb(){
-//     const int pairs_per_file = 100000;
-//         string filename = "2string.txt";
-//         ofstream file(filename);
+void transactionGen(){
+    ofstream file("transaction.txt");
+    for (int i = 0; i < 10000; i++) {
+        int a = dist_1000(mt);
+        int b = dist_1000(mt);
+        while(a == b){
+            b = dist_1000(mt);
+        }
 
-//         for (int i = 0; i < pairs_per_file; ++i) {
-//             string a = random_string(1);
-//             string b = random_string(1);
-//             while(b == a){
-//                 b = random_string(1);
-//             }
-//             string s1 = "la" + a + "as";
-//             string s2 = "la" + b + "as";
-//             file << s1 << " " << s2 << "\n";
-//         }
-//     file.close();
-// }
+
+        transactions[i].getTransactionID() = users[a].getPublicKey() + users[b].getPublicKey() + dist(mt) % users[a].getBalance()
+        A.clear();
+        B.clear();
+        ASCII(A);
+        sum(A, ); 
+
+        K(A);
+        R(A);
+        I(A);
+        S(A,B,8);
+        T(A,B,8);
+        I(A);
+        S(A,B,8);
+
+
+        file << users[a].getPublicKey() << " " << users[b].getPublicKey() << " " << dist(mt) % users[a].getBalance() << "\n";
+    }
+    file.close();
+}
 
 
 void ASCII(vector<uint32_t> & A){

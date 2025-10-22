@@ -1,7 +1,7 @@
 #include "lib.h"
 
 void userGen();
-void generuojamsimb();
+void transactionGen();
 void ASCII(vector<uint32_t> & A);
 void sum(vector<uint32_t> & A, string a);
 void K(vector<uint32_t> & A);

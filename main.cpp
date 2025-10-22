@@ -1,18 +1,19 @@
 #include "lib.h"
 #include "main.h"
 
+vector<uint32_t> A;
+vector<string> B;
+vector<string> TXT;
+
 
 int main(){
-    vector<uint32_t> A;
-    vector<string> B;
-    vector<string> TXT;
-  
+
     userGen();
-    // generuojamsimb();
+    // transactionGen();
   
     string line;
-    ifstream file("kazkas.txt");
-    while (file >> line) {
+    ifstream file("transactions.txt");
+    while (getline(file, line)) {
         TXT.push_back(line);
     }
     file.close();
@@ -39,6 +40,7 @@ int main(){
         }
         outFile << endl; 
     }
+
     outFile.close();
     cout << fixed << setprecision(6);
     return 0;
