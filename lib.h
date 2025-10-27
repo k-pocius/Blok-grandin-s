@@ -22,6 +22,7 @@ using std::ofstream;
 using std::fixed;
 using std::setprecision;
 using std::to_string;
+using std::min;
 
 
 #endif
