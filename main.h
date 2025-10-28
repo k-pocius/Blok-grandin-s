@@ -1,9 +1,6 @@
 #pragma once
 #include "lib.h"
 
-extern vector<User> users;
-extern vector<Transaction> transactions;
-
 
 class Hasher {
 private:
@@ -61,18 +58,24 @@ public:
     uint32_t getAmount() const;
 };
 
+
+
 class Block{
 private:
-    string previousHash;
-    string timeStamp;
-    string version;
-    string blockHash;
-    int nonce;
-    string difficulty;
+    Hasher hasher;
     vector<Transaction> body;
 
+    string previousHash;
+    string timeStamp;
+    string merkleRootHash;    
+    string version;
+    string difficulty;
+    int nonce;
+    string blockHash;
+
+
 public:
-    Block(string prevHash, string time, string ver, string blkHash, int nce, string diff);
+    Block(string prevHash);
 
     string getPreviousHash() const;
     string getTimeStamp() const;
@@ -80,13 +83,33 @@ public:
     string getBlockHash() const;
     int getNonce() const;
     string getDifficulty() const;
-
     void setBody(const vector<Transaction>& transactions);
-    string randomTransactions(vector<Transaction>& transactions, std::mt19937& mt);
+    void setHeader(vector<Transaction>& transactions, std::mt19937& mt);
 
+    string bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt);
+    string calculateHash();
+    void mineBlock();
 };
+
+
+
+// class Blockchain {
+// private:
+//     vector<Block> chain;
+//     vector<Transaction> transactions;
+
+// public:
+//     Blockchain(const vector<Transaction>& txs) : transactions(txs) {}
+//     void createBlock();
+
+// };
+
 
 
 void userGen();
 void transactionGen();
+
+extern vector<User> users;
+extern vector<Transaction> transactions;
+
 
