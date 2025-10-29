@@ -28,10 +28,6 @@ int Block::getNonce() const {
 }
 
 
-void Block::setBody(const vector<Transaction>& transactions){
-    body = transactions;
-}
-
 void Block::setHeader(vector<Transaction>& transactions, std::mt19937& mt) {
     string txIDs = bodyTransactions(transactions, mt);
 
@@ -78,8 +74,5 @@ void Block::mineBlock() {
         blockHash = calculateHash();
     } while (blockHash.substr(0, difficulty.size()) != difficulty);
 
-    cout << "Block mined! Hash: " << blockHash 
-         << " | Nonce: " << nonce 
-         << " | Time: " << timeStamp << endl;
 }
 

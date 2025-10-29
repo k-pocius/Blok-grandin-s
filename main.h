@@ -83,7 +83,7 @@ public:
     string getBlockHash() const;
     int getNonce() const;
     string getDifficulty() const;
-    void setBody(const vector<Transaction>& transactions);
+
     void setHeader(vector<Transaction>& transactions, std::mt19937& mt);
 
     string bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt);
@@ -93,16 +93,17 @@ public:
 
 
 
-// class Blockchain {
-// private:
-//     vector<Block> chain;
-//     vector<Transaction> transactions;
+class Blockchain {
+private:
+    vector<Block> chain;
 
-// public:
-//     Blockchain(const vector<Transaction>& txs) : transactions(txs) {}
-//     void createBlock();
+public:
+    Blockchain(std::mt19937& mt);  // konstruktorius su Genesis bloku
 
-// };
+    Block getLatestBlock() const;
+    void addBlock(vector<Transaction>& transactions, std::mt19937& mt);
+    void printChain() const;
+};
 
 
 
