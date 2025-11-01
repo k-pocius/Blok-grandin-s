@@ -23,7 +23,6 @@ public:
 
 
 
-
 class User {
 private:
     string name;
@@ -86,8 +85,9 @@ public:
 
     void setHeader(vector<Transaction>& transactions, std::mt19937& mt);
 
-    string bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt);
+    void bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt);
     string calculateHash();
+    string calculateMerkleRoot(const vector<Transaction>& txs);
     void mineBlock();
 };
 

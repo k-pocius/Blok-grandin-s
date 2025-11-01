@@ -3,7 +3,7 @@
 Blockchain::Blockchain(std::mt19937& mt) {
     // Genesis block with previousHash = "0"
     Block genesis("0");
-    std::vector<Transaction> emptyTx;
+    vector<Transaction> emptyTx;
     genesis.setHeader(emptyTx, mt);
     genesis.mineBlock();
     chain.push_back(genesis);

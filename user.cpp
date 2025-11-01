@@ -16,7 +16,6 @@ uint32_t User::getBalance() const {
     return balance;
 }
 
-
 void User::updateBalance(int amount) {
     balance += amount;
 }
