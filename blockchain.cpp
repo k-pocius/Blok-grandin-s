@@ -5,7 +5,7 @@ Blockchain::Blockchain(std::mt19937& mt) {
     Block genesis("0");
     vector<Transaction> emptyTx;
     genesis.setHeader(emptyTx, mt);
-    genesis.mineBlock();
+    genesis.mineBlock(1000000);
     chain.push_back(genesis);
 }
 
@@ -16,13 +16,28 @@ Block Blockchain::getLatestBlock() const {
 
 // Pridėti naują bloką
 void Blockchain::addBlock(vector<Transaction>& transactions, std::mt19937& mt) {
+
+    vector <Block> fiveCandidates;
     string prevHash = getLatestBlock().getBlockHash();
 
-    Block newBlock(prevHash);
-    newBlock.setHeader(transactions, mt);
-    newBlock.mineBlock();
-
-    chain.push_back(newBlock);
+    for(int i = 0; i < 5; i++){
+        Block newBlock(prevHash);
+        newBlock.setHeader(transactions, mt);
+        fiveCandidates.push_back(newBlock);
+    }
+      
+    int attempts = 5;
+    bool mined = false;
+    while(!mined){
+        for(auto& block : fiveCandidates){
+            mined = block.mineBlock(attempts);
+            if(mined){
+                chain.push_back(block);
+                break;
+            }
+        }
+        attempts *= 2;
+    }
 }
 
 // Atspausdinti visą grandinę

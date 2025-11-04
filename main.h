@@ -88,7 +88,7 @@ public:
     void bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt);
     string calculateHash();
     string calculateMerkleRoot(const vector<Transaction>& txs);
-    void mineBlock();
+    bool mineBlock(int maxAttempts);
 };
 
 

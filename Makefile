@@ -1,9 +1,9 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -O2
+CXXFLAGS = -std=c++17 -Wall -O
 
 # Source files
-SRC = main.cpp user.cpp transactions.cpp hasher.cpp mainfunc.cpp block.cpp blockchain.cpp
+SRC = main.cpp user.cpp transactions.cpp hasher.cpp gen.cpp block.cpp blockchain.cpp
 
 # Object files (replace .cpp with .o)
 OBJ = $(SRC:.cpp=.o)

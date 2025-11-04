@@ -112,12 +112,15 @@ string Block::calculateMerkleRoot(const vector<Transaction>& txs) {
 
 
 // Proof-of-Work kasimas
-void Block::mineBlock() {
-    nonce = 0;
-    do {
-        nonce++;
-        blockHash = calculateHash();
-    } while (blockHash.substr(0, difficulty.size()) != difficulty);
+bool Block::mineBlock(int maxAttempts) {
 
+    for(int i = 0; i < maxAttempts; i++){
+        nonce = i;
+        blockHash = calculateHash();
+        if(blockHash.substr(0, difficulty.size()) == difficulty) return true;
+    }
+
+    return false;
 }
+
 
