@@ -48,6 +48,13 @@ void Block::bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt
     body.clear(); // išvalom prieš užpildydami
 
     for (const auto& tx : transactions) {
+
+        string expectedID = hasher.computeHash(
+            tx.getSender() + tx.getReceiver() + to_string(tx.getAmount())
+        );
+        if (expectedID != tx.getTransactionID()) {
+            continue; // neteisinga transakcija – praleidžiam
+        }
         // surandam siuntėją
         for (auto& user : users) {
             if (user.getPublicKey() == tx.getSender()) {
