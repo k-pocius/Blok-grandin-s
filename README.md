@@ -105,3 +105,6 @@ Sugeneruotų transakcijų ID, siuntejo, gavejo raktai, siunčiama suma.<br>
 
 Vartotojų balansai po patvirtintų transakcijų<br>
 ![after](afterMine.png)
+
+
+Dirbtinis intelektas buvo naudojamas sukurti: lygiagrečiam kasimui sukurti, makefile, padėti sudaryti kodo struktūrą, veikimo principą.
