@@ -1,3 +1,11 @@
+
+Kaip naudotis programa?
+į konsolę parašyti - make
+tuomet sukompiliavus konsolėje parašyti - ./blockchain, tai paleis kodą.
+
+
+
+
 User klasė <br>
 Saugo informaciją apie vartotoją: vardą, viešą raktą (publicKey) ir balansą.
 
@@ -9,7 +17,6 @@ ID yra hash’as, apskaičiuotas iš siuntėjo, gavėjo ir sumos.
 
 Hasher klasė<br>
 Atsakinga už hash’ų skaičiavimą.
-Naudojama tiek transakcijų ID patikrai, tiek blokų hash’ams generuoti.
 Metodai:<br>
 computeHash() – paskaičiuoja bloko hash.
 
@@ -18,9 +25,10 @@ Block klasė saugo:<br>
 previousHash, timestamp, merkleRootHash, version difficulty, nonce, blockHash.
 body – transakcijų sąrašą.
 Metodai:<br>
-bodyTransactions(...) – atrenka 100 išmaišytų transakciju, patikrina jų galiojimą, atnaujina balansus, sudeda į bloką.<br>
-calculateHash(...) - skaiciuoja kasamo bloko hash'a<br>
-calculateMerkleRoot(...) - iš 100 transakcijų id poromis atrenka transakcijas ir iš jų padaro vieną hash, ir taip kartoja kol lieka vienas hashas.<br>
+bodyTransactions(...) – atrenka 100 išmaišytų transakciju, patikrina ar sutampa transakciju ID, atnaujina user balansus, sudeda body vektorių.<br>
+setHeader(...) - iš sugeneruotų 100 transakcijų sukuria merkleRootHash ir timestamp <br>
+calculateHash(...) - skaičiuoja kasamo bloko hash'a<br>
+calculateMerkleRoot(...) - iš 100 transakcijų id poromis atrenka transakcijas, iš jų padaro vieną hash ir taip kartoja kol lieka vienas hashas.<br>
 mineBlock(...) – ieško nonce, kad hash atitiktų difficulty.
 
 
@@ -66,8 +74,8 @@ Konsolėje parodoma:<br>
 
 ![blokas](console.png)<br>
 === Block 3 ===<br>
-Previous Hash: 0002C360B7ED71B4...<br>
-Block Hash:    000C0F5AC4ECC83E...<br>
+Previous Hash: 000B2680927DD...<br>
+Block Hash:    000B28C0C27B8...<br>
 Nonce:         512<br>
 Difficulty:    000<br>
 Version:       v0.1<br>
@@ -80,3 +88,20 @@ Nonce buvo rastas 512‑uoju bandymu.<br>
 Sunkumas - Bloko hash prasideda ("000").<br>
 Bloko versija. <br>
 Timestamp rodo Unix laiką, kada blokas buvo sugeneruotas.
+
+
+
+Sugeneruotų vartotojų vardas, public key ir balansas: <br>
+![user](user.png) <br>
+
+
+
+Sugeneruotų transakcijų ID, siuntejo, gavejo raktai, siunčiama suma.<br>
+![transaction](transaction.png)<br>
+
+
+
+
+
+Vartotojų balansai po patvirtintų transakcijų<br>
+![after](afterMine.png)
