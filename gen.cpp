@@ -43,8 +43,8 @@ void transactionGen(){
             b = dist_1000(mt);
         }
 
-        uint32_t amount = dist(mt) % users[a].getBalance();
-        string line = users[a].getPublicKey() + users[b].getPublicKey() + to_string(amount);
+        uint32_t amount = dist(mt) / 1000;
+        string line = users[a].getPublicKey() + " " + users[b].getPublicKey() + " " + to_string(amount);
 
         string hash = hasher.computeHash(line);
 

@@ -6,7 +6,7 @@ class Hasher {
 private:
     vector<uint32_t> A;
     vector<string> B;
-    const string seed = "KRISTIS5";
+    string seed = "KRISTIS5";
 
     void ASCII(vector<uint32_t> & A);
     void sum(const string& input);
@@ -17,7 +17,6 @@ private:
     void T(int length);
 
 public:
-    // Pagrindinis metodas, kurį naudosime main.cpp
     string computeHash(const string& input);
 };
 
@@ -35,7 +34,7 @@ public:
     string getName() const;
     string getPublicKey() const;
     uint32_t getBalance() const;
-    void updateBalance(int amount); // papildomas metodas balanso keitimui
+    void updateBalance(int amount);
 };
 
 
@@ -56,7 +55,6 @@ public:
     string getReceiver() const;
     uint32_t getAmount() const;
 };
-
 
 
 class Block{
@@ -88,7 +86,7 @@ public:
     void bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt);
     string calculateHash();
     string calculateMerkleRoot(const vector<Transaction>& txs);
-    bool mineBlock(int maxAttempts);
+    bool mineBlock(int maxAttempts, int& attemptsUsed);
 };
 
 

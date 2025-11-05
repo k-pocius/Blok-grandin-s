@@ -12,13 +12,21 @@ int main() {
 
     Blockchain myChain(mt);
 
-    // Pridedame kelis blokus
+    // Pridedame blokus i blockchain kol baigsis transakcijos
     while(!transactions.empty()){
         myChain.addBlock(transactions, mt);
     }
 
     // Atspausdiname visą grandinę
     myChain.printChain();
+
+
+    // atspausdiname varotojų balansus po transakcijų apdorojimo
+    ofstream fr("output.txt");
+    for(const auto& user : users){
+        fr << "User: " << user.getName() << ", Balance: " << user.getBalance() << std::endl;
+    }
+    fr.close();
 
     return 0;
 }

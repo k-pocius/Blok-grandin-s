@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -O
+CXXFLAGS = -std=c++17 -Wall -O3
 
 # Source files
 SRC = main.cpp user.cpp transactions.cpp hasher.cpp gen.cpp block.cpp blockchain.cpp

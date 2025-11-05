@@ -10,6 +10,7 @@
 #include <time.h>
 #include <random>
 #include <algorithm>
+#include <future>
 
 using std::string;
 using std::vector;

@@ -33,24 +33,24 @@ void Block::setHeader(vector<Transaction>& transactions, std::mt19937& mt) {
 
     merkleRootHash = calculateMerkleRoot(body);
     timeStamp = to_string(static_cast<uint32_t>(std::time(nullptr)));    
-    // version ir difficulty gali būti nustatyti konstruktoriuje
+
 }
 
 
 void Block::bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt) {
     if (transactions.empty()) {
-        cout << "No more transactions to include in a block." << endl;
         return;
     }
+    int processed = 0;
 
     std::shuffle(transactions.begin(), transactions.end(), mt);
 
     body.clear(); // išvalom prieš užpildydami
 
     for (const auto& tx : transactions) {
-
+        processed++;
         string expectedID = hasher.computeHash(
-            tx.getSender() + tx.getReceiver() + to_string(tx.getAmount())
+            tx.getSender() + " " + tx.getReceiver() + " " + to_string(tx.getAmount())
         );
         if (expectedID != tx.getTransactionID()) {
             continue; // neteisinga transakcija – praleidžiam
@@ -60,7 +60,7 @@ void Block::bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt
             if (user.getPublicKey() == tx.getSender()) {
                 if (user.getBalance() >= tx.getAmount()) {
                     // atnaujinam balansus
-                    user.updateBalance(tx.getAmount());
+                    user.updateBalance(-tx.getAmount());
                     for (auto& u : users) {
                         if (u.getPublicKey() == tx.getReceiver()) {
                             u.updateBalance(tx.getAmount());
@@ -75,8 +75,10 @@ void Block::bodyTransactions(vector<Transaction>& transactions, std::mt19937& mt
     }
 
     // pašalinam tiek transakcijų, kiek įtraukėm į body
-    transactions.erase(transactions.begin(), transactions.begin() + body.size());
+    transactions.erase(transactions.begin(), transactions.begin() + processed);
 }
+
+
 
 
 string Block::calculateHash() {
@@ -112,15 +114,20 @@ string Block::calculateMerkleRoot(const vector<Transaction>& txs) {
 
 
 // Proof-of-Work kasimas
-bool Block::mineBlock(int maxAttempts) {
-
-    for(int i = 0; i < maxAttempts; i++){
+bool Block::mineBlock(int maxAttempts, int& attemptsUsed) {
+    for (int i = 0; i < maxAttempts; i++) {
         nonce = i;
         blockHash = calculateHash();
-        if(blockHash.substr(0, difficulty.size()) == difficulty) return true;
+
+        if (blockHash.substr(0, difficulty.size()) == difficulty) {
+            attemptsUsed = i + 1;   // kiek bandymų prireikė
+            return true;            // blokas iškastas
+        }
     }
 
+    attemptsUsed = maxAttempts;     // nepavyko, bet grąžinam kiek bandymų atlikta
     return false;
 }
+
 
 
